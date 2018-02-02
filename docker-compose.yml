@@ -1,0 +1,19 @@
+version: '2'
+services:
+  psql-ssl:
+    container_name: psql-ssl
+    image: psql-ssl
+    build: ./postgres-ssl
+    networks:
+      - db
+    ports: 
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    volumes:
+      - "./postgres-data:/var/lib/postgresql/data"
+networks:
+    db:
+      driver: bridge
